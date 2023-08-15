@@ -1,0 +1,11 @@
+{
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "1.0.0",
+  "packages": ["abcd-engine", "abcd-ui"],
+  "command": {
+    "publish": {
+      "registry": "https://npm.pkg.github.com"
+    }
+  }
+}
