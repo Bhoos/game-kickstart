@@ -1,6 +1,7 @@
 import { AbcdActionConsumer } from './Abcd.js';
 import { Card } from '@bhoos/cards';
 import { StartGameAction } from './actions/StartGameAction.js';
+import { PlayAction } from './actions/PlayAction.js';
 
 export interface AbcdStatePlayer {
   id: string;
@@ -22,6 +23,7 @@ export class AbcdState implements AbcdActionConsumer<void> {
   userIdx: number = -1;
 
   turn: number = -1;
+  playedCard: Card | null = null;
 
   onStartGame(action: StartGameAction): void {
     this.stage = ABCD_STAGE_PLAY;
@@ -35,5 +37,10 @@ export class AbcdState implements AbcdActionConsumer<void> {
     }));
 
     this.userIdx = action.userIdx;
+    this.turn = 0;
+  }
+
+  onPlay(action: PlayAction): void {
+    this.playedCard = action.card;
   }
 }

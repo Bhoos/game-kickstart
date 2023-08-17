@@ -2,6 +2,8 @@ import { Action, Client, Event, Match, Timer } from '@bhoos/game-kit-engine';
 import { Abcd } from './Abcd.js';
 import { AbcdState } from './AbcdState.js';
 import { PLAY_TIMER } from './AbcdLoop.js';
+import { PlayApi } from './apis/PlayApi.js';
+import { Card } from '@bhoos/cards';
 
 export class AbcdBot implements Client<Abcd> {
   playerId: string;
@@ -24,6 +26,7 @@ export class AbcdBot implements Client<Abcd> {
     if (event instanceof Timer) {
       if (event.target != this.playerIdx) return;
       if (event.type === PLAY_TIMER) {
+        this.match.execute(PlayApi.create(0, Card.Back), this);
       }
     }
   }

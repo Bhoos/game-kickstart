@@ -17,10 +17,6 @@ export class PlayApi extends Api<Abcd> {
   static validate(api: PlayApi, state: AbcdState, playerIdx: number) {
     assert(playerIdx === state.turn % state.players.length, 'It is not your turn');
     assert(playerIdx === api.playerIdx, "playerIdx for Client and API payload don't match");
-    assert(
-      state.players[playerIdx].cards.findIndex(c => c.is(api.card)) != -1,
-      "Player doesn't have this card to play it",
-    );
   }
 
   static create(playerIdx: number, card: Card) {

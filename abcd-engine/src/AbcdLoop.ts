@@ -5,6 +5,8 @@ import { PlayApi } from './apis/index.js';
 import { Abcd } from './Abcd.js';
 import { AbcdConfig } from './AbcdConfig.js';
 import { validateConfig } from './utils/validateConfig.js';
+import { PlayAction } from './actions/PlayAction.js';
+import { Card } from '@bhoos/cards';
 
 export const PLAY_TIMER = 1;
 
@@ -33,13 +35,13 @@ export async function AbcdLoop(match: Match<Abcd>, config: AbcdConfig) {
       // Play Move
       await match.wait(playTimer, ({ expect, onTimeout }) => {
         expect(PlayApi, PlayApi.validate, api => {
-          // TODO: dispatch some action
+          match.dispatch(PlayAction.create(0, api.card));
         });
         onTimeout(() => {
-          // TODO: handle timeout case
+          match.dispatch(PlayAction.create(0, Card.Back));
         });
       });
-    } while (true); // TODO: check game end case
+    } while (false); // TODO: check game end case
   }
 
   match.end(0);
