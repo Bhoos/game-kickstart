@@ -24,10 +24,11 @@
   },
   "dependencies": {
     "@bhoos/cards": "^1.0.13",
-    "@bhoos/game-kit-engine": "^4.0.0-rc.5",
-    "@bhoos/serialization": "^1.0.31"
+    "@bhoos/game-kit-engine": "^4.0.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@bhoos/serialization": "*"
+  },
   "devDependencies": {
     "@bhoos/game-kit-tests": "^4.0.0-rc.3",
     "@types/node": "^18.11.7",
