@@ -20,17 +20,26 @@
     "build:es6": "mkdir -p es6 && echo '{ \"type\": \"module\" }' > es6/package.json && tsc --module es6 --outDir es6",
     "build": "yarn clean && yarn build:cjs && yarn build:es6",
     "prepublishOnly": "yarn clean && yarn build",
-    "pretty": "prettier --write 'src/**/*.ts'"
+    "pretty": "prettier --write 'src/**/*.ts'",
+    "release": "npm dist-tag add ${npm_package_name}@${npm_package_version} latest"
   },
   "dependencies": {
-    "@bhoos/cards": "^1.0.13",
+    "@bhoos/cards": "^1.0.0",
     "@bhoos/game-kit-engine": "^4.0.0"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/bhoos/jutpatti.git"
+  },
   "peerDependencies": {
-    "@bhoos/serialization": "*"
+    "@bhoos/serialization": "^1.0.0 || ^2.0.0"
   },
   "devDependencies": {
-    "@bhoos/game-kit-tests": "^4.0.0-rc.3",
+    "@bhoos/serialization": "^2.0.0",
+    "@bhoos/game-kit-tests": "^4.0.0",
     "@types/node": "^18.11.7",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
