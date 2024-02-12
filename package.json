@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Abcd Game",
   "workspaces": [
-    "abcd-engine",
-    "abcd-ui"
+    "lib/abcd-engine",
+    "lib/abcd-ui"
   ],
   "scripts": {
     "test": "vitest run",
