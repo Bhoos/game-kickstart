@@ -33,5 +33,5 @@
     "@types/react-native": "^0.72.2",
     "typescript": "^4.8.4"
   },
-  "license": "UNLICENSED",
+  "license": "UNLICENSED"
 }
