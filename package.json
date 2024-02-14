@@ -1,14 +1,12 @@
 {
-  "name": "@bhoos/abcd",
-  "version": "1.0.0",
+  "name": "@bhoos/jut-app-interface",
+  "version": "2.6.1",
   "description": "Abcd Game",
   "type": "module",
   "scripts": {
     "test": "vitest run",
     "bundle": "yarn rollup --config rollup.config.js",
-    "coverage": "lerna run test -- --coverage run",
-    "build": "lerna run build",
-    "release": "lerna run release",
+    "build": "tsc",
     "lint": "eslint ."
   },
   "repository": "git@github.com:bhoos/abcd",
@@ -53,5 +51,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.9",
+    "@bhoos/jut-engine": "2.3.2",
+    "@bhoos/jut-ui": "2.6.1",
+    "@bhoos/react-kit-form": "^3.0.0",
+    "@bhoos/super-app-interface": "1.0.1",
+    "@bhoos/super-components": "^1.0.0"
   }
 }
