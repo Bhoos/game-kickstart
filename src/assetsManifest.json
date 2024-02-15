@@ -1,0 +1,42 @@
+[
+  [
+    "/jutpatti/help/gameplay",
+    {
+      "default": "724962d136290311ccc0dc297718e4a5482fda19ea02bc2694d4190a02b10ffc",
+      "1.5x": "3d88b307c1a315ced941b306d2b59b3881d71414bd594cbdf0014adfcee6697c",
+      "2x": "59aa6e0c2135f72535c52edcbc4b3f32e6a46bf0981f1c3b4f6a1bf7ea476be4",
+      "3x": "8121a0d8e1eea7864c72735850a7657aafa3911b2564d2ac5fe5a3d232dc4a10"
+    }
+  ],
+  [
+    "/jutpatti/help/joker",
+    {
+      "default": "3d8a6e6ecb9f312d001a20840842486fdfe5370ca9ea9f88ee250653d7e050b8",
+      "1.5x": "a3c6fe354aebdd8640ef25b5a3d3db2d68abdff863144cde914aaf4b6e3513c5",
+      "2x": "7a2c404d5f3893f2f318cf152108fefec617e67c59720588d820ad7f30f253a0",
+      "3x": "9a2223b46912643fa94375147edfb536e896ca02c4ab08a6a758f91383603c07"
+    }
+  ],
+  [
+    "/jutpatti/help/objective",
+    {
+      "default": "efc390d9dcbed27326313f1ad46c9b9f75a0afdd33210539b748eb9c24ae862c",
+      "1.5x": "6776bf736336ad6e784d0fe9a911be42242f51885132af1162161746ff61e348",
+      "2x": "fb6e4a19f22fe8043e8d1ba5cdda54ec14dd4285ece9164fcae0deb79cf42e64",
+      "3x": "16a5c3e0647dd7fa989d86f1b358161c2438a29782644fb04e499d3827220806"
+    }
+  ],
+  [
+    "/jutpatti/help/ranking",
+    "9d172451c61be1d5411ac6423c9994b4956d06e4793c3b2c9fb4ed3afc35e3fc"
+  ],
+  [
+    "/jutpatti/help/winning",
+    {
+      "default": "605a78916550c684ca36759c2f240b280e0267fce35d10ec6ff4570105e9d9a6",
+      "1.5x": "75e47e99031e91a25c7d549373bd1fc297c31dcb9aad5cc87538b20e454c86ea",
+      "2x": "d7ade4f23236a5c1ed6809bf551c0ba7d633af4dc17d343f2e85fc7325a38692",
+      "3x": "7224e67f02656c5d5dd100d166e032252e9c8a8ee4e3d5b5a54b62cc0e44d11a"
+    }
+  ]
+]

@@ -337,5 +337,10 @@ export function initializeJutGame(): GameAppInterface<Jut> {
         amount: 1000,
       },
     ],
+
+    assets: {
+      pathTranslations: [],
+      assets: require('./assetsManifest.json')
+    }
   };
 }
