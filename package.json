@@ -7,7 +7,9 @@
     "test": "vitest run",
     "bundle": "yarn rollup --config rollup.config.js",
     "generateAssetsManifest": "node generateAssetManifest.js ./assets/ ./out/ > src/assetsManifest.json",
-    "build": "yarn generateAssetsManifest && tsc",
+    "generate": "mkdir -p out/assets/ && yarn generateAssetsManifest",
+    "start": "node server.js",
+    "build": "tsc",
     "lint": "eslint ."
   },
   "repository": "git@github.com:bhoos/abcd",
