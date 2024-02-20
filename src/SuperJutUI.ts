@@ -4,7 +4,6 @@ import { JutUI } from '@bhoos/jut-ui';
 import { Prefs, RoomConfig, SuperUIEnv } from '@bhoos/super-app-interface';
 import {
   CoinsPlugin,
-  ConnectionToastPlugin,
   GameOverlayPlugin,
   UITestPlugin,
   pluginToUI,
@@ -20,7 +19,6 @@ export class SuperJutUI extends JutUI implements UI<Jut, SuperUIEnv<Jut>> {
       pluginToUI<Jut, SuperUIEnv<Jut>>(ui, plugin, 'onStartGame', 'onFinishGame');
     }
 
-    plug(new ConnectionToastPlugin(this.getSpriteManager()));
     plug(
       new CoinsPlugin(layout, this.getSpriteManager(), () => {
         return computeJutWinnings(this.state, roomConfig, this.state.userIdx);

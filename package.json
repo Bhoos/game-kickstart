@@ -39,12 +39,18 @@
     "rimraf": "^3.0.2",
     "rollup": "^4.10.0",
     "typescript": "^4.8.4",
-    "vitest": "^0.33.0"
+    "vitest": "^0.33.0",
+    "@bhoos/game-kit-ui": ">=4.6.0 <3",
+    "@bhoos/react-kit-form": "^3.0.0",
+    "@bhoos/react-kit-modal": "^1.0.0-rc.3",
+    "@bhoos/serialization": "^2.0.0",
+    "@shopify/react-native-skia": "^0.1.238"
   },
   "peerDependencies": {
     "@bhoos/game-kit-engine": "*",
     "@bhoos/game-kit-ui": "*",
     "@bhoos/react-kit-modal": "*",
+    "@bhoos/react-kit-form": "*",
     "@bhoos/react-kit-router": "*",
     "@shopify/react-native-skia": "*",
     "react": "*",
@@ -54,8 +60,10 @@
     "@babel/runtime": "^7.23.9",
     "@bhoos/jut-engine": "2.3.2",
     "@bhoos/jut-ui": "2.6.1",
-    "@bhoos/react-kit-form": "^3.0.0",
-    "@bhoos/super-app-interface": "1.0.1",
-    "@bhoos/super-components": "^1.0.0"
+    "@bhoos/super-app-interface": "1.1.0",
+    "@bhoos/super-components": "^1.1.0"
+  },
+  "resolutions": {
+    "@bhoos/game-kit-ui": "4.6.0"
   }
 }

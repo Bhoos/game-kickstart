@@ -20,6 +20,7 @@ export default defineConfig({
       ['@bhoos/game-kit-engine']: 'gameKitEngine',
       ['@bhoos/game-kit-ui']: 'gameKitUI',
       ['@bhoos/react-kit-modal']: 'reactKitModal',
+      ['@bhoos/react-kit-form']: 'reactKitForm',
       ['react']: 'React',
       ['react-native']: 'rn',
       ['@shopify/react-native-skia']: 'Skia'
