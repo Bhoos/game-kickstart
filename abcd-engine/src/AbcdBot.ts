@@ -26,7 +26,7 @@ export class AbcdBot implements Client<Abcd> {
     if (event instanceof Timer) {
       if (event.target != this.playerIdx) return;
       if (event.type === PLAY_TIMER) {
-        this.match.execute(PlayApi.create(0, Card.Back), this);
+        this.match.execute(PlayApi.create(0, Card.Back), this).catch(console.error);
       }
     }
   }

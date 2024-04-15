@@ -1,1 +1,2 @@
-export * from './PlayerWidget';
+export { PlayerWidget } from './PlayerWidget';
+export { PlayWidget } from './PlayWidget';

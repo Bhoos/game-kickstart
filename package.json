@@ -4,7 +4,8 @@
   "description": "Abcd Game",
   "workspaces": [
     "abcd-engine",
-    "abcd-ui"
+    "abcd-ui",
+    "abcd-app-interface"
   ],
   "scripts": {
     "test": "vitest run",
@@ -14,7 +15,6 @@
     "lint": "eslint ."
   },
   "repository": "git@github.com:bhoos/abcd",
-  "author": "Bibek Panthi <bpanthi977@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {

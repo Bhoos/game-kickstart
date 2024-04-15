@@ -1,14 +1,14 @@
 import { EventConsumer, Game, Timer } from '@bhoos/game-kit-engine';
 import { AbcdState } from './AbcdState.js';
-import { StartGameAction } from './actions';
+import { FinishGameAction, StartGameAction, PlayAction } from './actions';
 import { Oracle } from '@bhoos/serialization';
 import { PlayApi } from './apis';
 import { AbcdConfig } from './AbcdConfig.js';
-import { PlayAction } from './actions/PlayAction.js';
 
 export interface AbcdActionConsumer<Return> {
   onStartGame(action: StartGameAction): Return;
   onPlay(action: PlayAction): Return;
+  onFinishGame(action: FinishGameAction): Return;
 }
 
 export interface AbcdEventConsumer extends EventConsumer {}

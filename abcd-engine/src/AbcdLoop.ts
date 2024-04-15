@@ -1,14 +1,13 @@
 import { Timer, Match } from '@bhoos/game-kit-engine';
-import { StartGameAction } from './actions/index.js';
+import { FinishGameAction, StartGameAction } from './actions/index.js';
 import { ABCD_STAGE_PLAY, ABCD_STAGE_START } from './AbcdState.js';
 import { PlayApi } from './apis/index.js';
 import { Abcd } from './Abcd.js';
 import { AbcdConfig } from './AbcdConfig.js';
 import { validateConfig } from './utils/validateConfig.js';
 import { PlayAction } from './actions/PlayAction.js';
-import { Card } from '@bhoos/cards';
 
-export const PLAY_TIMER = 1;
+export const PLAY_TIMER = 3000;
 
 export async function AbcdLoop(match: Match<Abcd>, config: AbcdConfig) {
   // Initialization
@@ -31,17 +30,17 @@ export async function AbcdLoop(match: Match<Abcd>, config: AbcdConfig) {
 
   // Stage 2: PLAY
   if (state.stage === ABCD_STAGE_PLAY) {
-    do {
-      // Play Move
-      await match.wait(playTimer, ({ expect, onTimeout }) => {
-        expect(PlayApi, PlayApi.validate, api => {
-          match.dispatch(PlayAction.create(0, api.card));
-        });
-        onTimeout(() => {
-          match.dispatch(PlayAction.create(0, Card.Back));
-        });
+    await match.wait(playTimer, ({ onTimeout, on }) => {
+      on(PlayApi, PlayApi.validate, api => {
+        match.dispatch(PlayAction.create(api.playerIdx));
       });
-    } while (false); // TODO: check game end case
+
+      onTimeout(() => {});
+    });
+
+    const maxCount = state.players.reduce((acc, p) => Math.max(acc, p.clickCount), 0);
+    const winnerIdx = state.players.findIndex(p => p.clickCount === maxCount);
+    match.dispatch(FinishGameAction.create(winnerIdx));
   }
 
   match.end(0);

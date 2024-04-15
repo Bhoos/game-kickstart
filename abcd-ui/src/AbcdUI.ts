@@ -1,20 +1,13 @@
-import { CoordinateSystem, Environment, SpriteManager, UI, animateLayout, delay, timingAnim } from '@bhoos/game-kit-ui';
+import { CoordinateSystem, Environment, SpriteManager, UI, UIActionReturn, timingAnim } from '@bhoos/game-kit-ui';
 import {
-  DealAction,
   FinishGameAction,
   Abcd,
   AbcdState,
-  PickAction,
-  PickApi,
   PlayAction,
   PlayApi,
   StartGameAction,
 } from '@bhoos/abcd-engine';
-import { CardsSpriteManager } from './CardsSpriteManager';
-import { CardSprite } from './sprites';
 import { AbcdLayouts, computeLayouts, createWidgets } from './AbcdWidgets';
-import { Card } from '@bhoos/cards';
-import { arrangeCardsAbcd, computePileCards, playerOffset } from './utils';
 import { ConfigOf } from '@bhoos/game-kit-engine/src/Game';
 
 const ANIMATION_SPEED = 1;
@@ -26,7 +19,7 @@ const timing200 = timingAnim({ duration: ANIMATION_SPEED * 200, useNativeDriver:
 export type AbcdUIEnv = Environment<Abcd>;
 
 export class AbcdUI implements UI<Abcd, AbcdUIEnv> {
-  protected sm: CardsSpriteManager;
+  protected sm: SpriteManager;
   public state!: AbcdState;
   protected env!: AbcdUIEnv;
 
@@ -37,7 +30,7 @@ export class AbcdUI implements UI<Abcd, AbcdUIEnv> {
   constructor(layout: CoordinateSystem, config: ConfigOf<Abcd>) {
     console.log('Creating UI');
     this._layout = layout;
-    this.sm = new CardsSpriteManager(layout);
+    this.sm = new SpriteManager(layout);
     this.layouts = computeLayouts(layout);
     this.widgets = createWidgets(this, this.sm, config);
     return this;
@@ -46,15 +39,13 @@ export class AbcdUI implements UI<Abcd, AbcdUIEnv> {
   /// INTERACTION WITH GAME CLIENT
   onMatchEnd(): void {}
 
-  onBackLog(backLog: number, catchup: () => Promise<void>): void {
-    if (backLog > 20) {
-      console.log('BackLog:', backLog, 'Catching Up');
-      catchup();
-    }
-  }
+  onBackLog(backLog: number, catchup: () => Promise<void>): void {}
 
   async onStateUpdate() {
-    this.widgets.profiles.forEach(p => p.draw());
+    for (let i = 0; i < this.state.players.length; i++) {
+      this.widgets.profiles[i].draw();
+    }
+    this.widgets.playButton.draw();
   }
 
   getSpriteManager(): SpriteManager {
@@ -62,9 +53,7 @@ export class AbcdUI implements UI<Abcd, AbcdUIEnv> {
   }
 
   onLayoutUpdate(layout: CoordinateSystem) {
-    if (layout != this._layout) {
-      this.widgets.profiles.forEach(p => p.updateLayout());
-    }
+    this.widgets.profiles.forEach(p => p.updateLayout());
   }
 
   onAttach(env: AbcdUIEnv) {
@@ -82,12 +71,33 @@ export class AbcdUI implements UI<Abcd, AbcdUIEnv> {
   onConnectionStatus(): void {}
 
   // USER INTERACTION
-  async onUserPlay(card: CardSprite) {} // TODO
+  async onUserPlay() {
+    this.env.client.execute(PlayApi.create(this.state.userIdx)).catch(console.error);
+  }
 
   // ACTION HANDLERS
   async onStartGame(action: StartGameAction) {
     return async () => {
-      this.widgets.profiles.forEach(p => p.draw());
+      for (let i = 0; i < this.state.players.length; i++) {
+        this.widgets.profiles[i].draw();
+      }
+      this.widgets.playButton.draw();
     };
   }
+
+  onPlay(action: PlayAction): UIActionReturn {
+    return () => {
+      const offset = (action.playerIdx - this.state.userIdx + this.state.players.length) % this.state.players.length;
+      this.widgets.profiles[offset].draw();
+    }
+  }
+
+  onFinishGame(action: FinishGameAction): UIActionReturn {
+    () => {
+      const offset = (action.winnerIdx - this.state.userIdx + this.state.players.length) % this.state.players.length;
+      this.widgets.profiles[offset].draw();
+      this.widgets.playButton.draw();
+    }
+  }
+
 }

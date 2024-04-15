@@ -23,7 +23,6 @@ export class StartGameAction extends Action<Abcd> {
 
   personalize(client: Client<Abcd>) {
     const instance = StartGameAction.create(this.players);
-    // TODO: maybe personalize the initialCash and cash values?
     instance.userIdx = this.players.findIndex(p => p.id === client.playerId);
     return instance as this;
   }

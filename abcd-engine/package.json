@@ -3,28 +3,22 @@
   "version": "1.0.0",
   "description": "Abcd Engine",
   "react-native": "src/index.ts",
-  "main": "dist/index.js",
   "module": "es6/index.js",
-  "author": "Bibek Panthi",
   "types": "./src/index.ts",
   "files": [
     "src",
-    "es6",
-    "dist"
+    "es6"
   ],
   "license": "UNLICENSED",
   "scripts": {
     "test": "vitest",
-    "clean": "rimraf dist && rimraf es6",
-    "build:cjs": "tsc",
-    "build:es6": "mkdir -p es6 && echo '{ \"type\": \"module\" }' > es6/package.json && tsc --module es6 --outDir es6",
-    "build": "yarn clean && yarn build:cjs && yarn build:es6",
+    "clean": "rimraf es6",
+    "build": "mkdir -p es6 && echo '{ \"type\": \"module\" }' > es6/package.json && tsc",
     "prepublishOnly": "yarn clean && yarn build",
     "pretty": "prettier --write 'src/**/*.ts'",
     "release": "npm dist-tag add ${npm_package_name}@${npm_package_version} latest"
   },
   "dependencies": {
-    "@bhoos/cards": "^1.0.0",
     "@bhoos/game-kit-engine": "^4.0.0"
   },
   "publishConfig": {
@@ -32,7 +26,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/bhoos/jutpatti.git"
+    "url": "ssh://git@github.com/bhoos/abcd.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "peerDependencies": {
     "@bhoos/serialization": "^1.0.0 || ^2.0.0"

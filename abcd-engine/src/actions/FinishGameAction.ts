@@ -2,24 +2,24 @@ import { Action, Client, Match } from '@bhoos/game-kit-engine';
 import { Serializer } from '@bhoos/serialization';
 import { Abcd, AbcdActionConsumer } from '../Abcd.js';
 
-export class PlayAction extends Action<Abcd> {
-  playerIdx!: number;
+export class FinishGameAction extends Action<Abcd> {
+  winnerIdx!: number;
 
   forwardTo<R>(consumer: AbcdActionConsumer<R>): R {
-    return consumer.onPlay(this);
+    return consumer.onFinishGame(this);
   }
 
   serialize(serializer: Serializer) {
-    this.playerIdx = serializer.uint8(this.playerIdx);
+    this.winnerIdx = serializer.uint8(this.winnerIdx);
   }
 
   personalize(_client: Client<Abcd>, _match: Match<Abcd>) {
     return this;
   }
 
-  static create(playerIdx: number) {
-    const instance = new PlayAction();
-    instance.playerIdx = playerIdx;
+  static create(winnerIdx: number) {
+    const instance = new FinishGameAction();
+    instance.winnerIdx = winnerIdx;
 
     return instance;
   }

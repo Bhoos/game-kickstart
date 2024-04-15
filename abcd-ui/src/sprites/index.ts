@@ -1,2 +1,2 @@
-export * from './CardSprite';
-export * from './ProfileSprite';
+export { ButtonSprite } from './ButtonSprite';
+export { ProfileSprite, ProfileSpriteProfile } from './ProfileSprite';

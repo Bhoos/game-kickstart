@@ -1,40 +1,39 @@
-import { Widget, animateLayout, timingAnim } from '@bhoos/game-kit-ui';
-import { CardsSpriteManager } from '../CardsSpriteManager';
-import { CardSprite, ProfileSprite, ProfileSpriteProfile } from '../sprites';
+import { SpriteManager, Widget, animateLayout, setLayout, timingAnim } from '@bhoos/game-kit-ui';
+import { ProfileSprite, ProfileSpriteProfile } from '../sprites';
 
 type State = {
-  color: string;
   profile: ProfileSpriteProfile;
+  isWinner: boolean;
 };
 
 type Layout = {
   x: number;
   y: number;
-  zIndex: number;
-  scale: number;
 };
 
-export class PlayerWidget extends Widget<Layout, State, CardsSpriteManager> {
-  cardSprites: CardSprite[] = [];
+export class PlayerWidget extends Widget<Layout, State, SpriteManager> {
   profileSprite: ProfileSprite;
-  constructor(s: CardsSpriteManager, computeLayout: () => Layout, computeState: () => State) {
+  constructor(s: SpriteManager, computeLayout: () => Layout, computeState: () => State) {
     super(s, computeLayout, computeState);
     this.profileSprite = s.registerSprite(new ProfileSprite());
     this.onLayoutUpdate();
   }
 
   protected onLayoutUpdate(): void {
-    animateLayout(this.profileSprite, this.layout, timingAnim({ duration: 300, useNativeDriver: true }));
+    setLayout(this.profileSprite, this.layout);
   }
 
   protected onDraw() {
     const state = this.state;
-    this.profileSprite.profile.setValue(state.profile);
-    this.profileSprite.color.setValue(state.color);
-  }
-
-  updateTurn() {
-    const state = this.computeState();
-    this.profileSprite.color.setValue(state.color);
+    this.profileSprite.opacity.setValue(1);
+    if (state.isWinner) {
+      this.profileSprite.profile.setValue({
+        ...state.profile,
+        name: 'Winner',
+      });
+    } else {
+      this.profileSprite.profile.setValue(state.profile);
+    }
+    setLayout(this.profileSprite, this.layout);
   }
 }

@@ -2,36 +2,44 @@
   "name": "@bhoos/abcd-ui",
   "version": "1.0.0",
   "description": "UI For Abcd Game",
-  "author": "Bibek Panthi",
-  "main": "dist/index.js",
   "module": "es6/index.js",
   "type": "module",
   "types": "./src/index.ts",
   "react-native": "src/index.ts",
   "files": [
-    "es6",
     "src"
   ],
   "scripts": {
-    "clean": "rm -rf es6",
-    "build:es6": "mkdir -p es6 && echo '{ \"type\": \"module\" }' > es6/package.json && tsc --module es6 --outDir es6",
-    "build": "yarn clean && yarn build:es6",
+    "build": "tsc",
     "release": "npm dist-tag add ${npm_package_name}@${npm_package_version} latest",
     "test": "vitest ."
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/bhoos/abcd.git"
+  },
   "dependencies": {
     "@bhoos/game-kit-ui": ">=4.0.0 <5",
-    "@bhoos/games-ui": ">=1.0.0 <2",
+    "@bhoos/games-ui": ">=4.0.0",
     "@bhoos/abcd-engine": "^1.0.0"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "@shopify/react-native-skia": "*",
+    "react-native-reanimated": "*"
   },
   "devDependencies": {
+    "@types/node": "^20.4.0",
     "@types/react": "^18.0.24",
     "@types/react-native": "^0.72.2",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "@shopify/react-native-skia": "*",
+    "react-native-reanimated": "*",
+    "react-native-skottie": "*"
   },
-  "license": "UNLICENSED",
+  "license": "UNLICENSED"
 }
