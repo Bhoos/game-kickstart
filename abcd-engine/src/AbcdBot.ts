@@ -3,7 +3,6 @@ import { Abcd } from './Abcd.js';
 import { AbcdState } from './AbcdState.js';
 import { PLAY_TIMER } from './AbcdLoop.js';
 import { PlayApi } from './apis/PlayApi.js';
-import { Card } from '@bhoos/cards';
 
 export class AbcdBot implements Client<Abcd> {
   playerId: string;
@@ -18,15 +17,15 @@ export class AbcdBot implements Client<Abcd> {
     this.match = match;
   }
 
-  end(code: number): void {}
+  end(_code: number): void {}
 
-  dispatch(action: Action<Abcd>): void {}
+  dispatch(_action: Action<Abcd>): void {}
 
   emit(event: Event<Abcd>): void {
     if (event instanceof Timer) {
       if (event.target != this.playerIdx) return;
       if (event.type === PLAY_TIMER) {
-        this.match.execute(PlayApi.create(0, Card.Back), this).catch(console.error);
+        this.match.execute(PlayApi.create(this.playerIdx), this).catch(console.error);
       }
     }
   }

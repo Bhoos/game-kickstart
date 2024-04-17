@@ -86,7 +86,6 @@ export function initializeAbcdGame(): GameAppInterface<Abcd> {
     prefs: {
       sound: true,
       vibration: true,
-      cardsLayout: 'hidden',
     },
 
     getPlayer: (profile: UserProfile) => {
