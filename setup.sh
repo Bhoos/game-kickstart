@@ -1,17 +1,31 @@
 #!/bin/sh
 
+normal=$1
+lower=$2
+upper=$3
+
+mv abcd-engine $lower-engine
+mv abcd-ui $lower-ui
+mv abcd-app-interface $lower-app-interface
+mv abcd-app-interface/assets/abcd $lower-app-interface/assets/$lower
+
 edit () {
-    sed -i '' -e 's/Abcd/Jut/g' -e 's/abcd/jut/g' -e 's/ABCD/JUT/g' "$file"
-    mv $file $(echo $file | sed -e 's/Abcd/Jut/')
+    echo $1 $2 $3
+    sed -i '' -e "s/Abcd/$normal/g" -e "s/abcd/$lower/g" -e "s/ABCD/$upper/g" "$file"
+    mv $file $(echo $file | sed -e "s/Abcd/$normal/g" -e "s/abcd/$lower/g" -e "s/ABCD/$upper/g" )
     echo $file
 
 }
 
-for file in $(find . -name "*.ts*")
+for file in $(find . -name "*.ts")
 do
     edit
 done
 
+for file in $(find . -name "*.tsx")
+do
+    edit
+done
 
 for file in $(find . -name "*.json")
 do
