@@ -6,8 +6,8 @@ upper=$3
 
 mv abcd-engine $lower-engine
 mv abcd-ui $lower-ui
+mv abcd-app-interface/assets/abcd abcd-app-interface/assets/$lower
 mv abcd-app-interface $lower-app-interface
-mv abcd-app-interface/assets/abcd $lower-app-interface/assets/$lower
 
 edit () {
     echo $1 $2 $3
