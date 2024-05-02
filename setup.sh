@@ -34,3 +34,8 @@ for file in $(find . -name "*.json")
 do
     edit
 done
+
+for file in $(find . -name "*.yml")
+do
+    edit
+done
