@@ -17,6 +17,9 @@ edit () {
 
 }
 
+file=".gitignore"
+edit
+
 for file in $(find . -name "*.ts")
 do
     edit
