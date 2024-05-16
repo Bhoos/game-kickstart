@@ -58,7 +58,7 @@ export function initializeAbcdGame(): GameAppInterface<Abcd> {
   return {
     gameId: pkg.bhoos.gameId,
     displayName: 'Abcd',
-    name: 'abcd',
+    name: 'Abcd',
     version: pkg.version,
     interfaceVersion: SuperAppInterfaceVersion,
     developer: 'Bibek Panthi',
