@@ -8,7 +8,7 @@ import {
   StartGameAction,
 } from '@bhoos/abcd-engine';
 import { AbcdLayouts, computeLayouts, createWidgets } from './AbcdWidgets';
-import { ConfigOf } from '@bhoos/game-kit-engine/src/Game';
+import { ConfigOf } from '@bhoos/game-kit-engine';
 
 const ANIMATION_SPEED = 1;
 const FLIP_SPEED_300 = ANIMATION_SPEED * 300;
