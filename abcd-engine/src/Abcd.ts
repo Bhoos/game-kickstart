@@ -22,7 +22,7 @@ export type AbcdPlayer = {
 export type Abcd = Game<AbcdActionConsumer<never>, AbcdState, AbcdEventConsumer, AbcdPlayer, AbcdConfig>;
 
 export function registerToOracle(oracle: Oracle): Oracle {
-  const actions = [StartGameAction];
+  const actions = [StartGameAction, PlayAction, FinishGameAction];
 
   const apis = [PlayApi];
   const timers = [Timer];
