@@ -6,6 +6,9 @@ export default defineConfig({
       // For coverage reports 'json-summary' is required, json is recommended
       reporter: ['text', 'json-summary', 'json'],
       statements: 95
-    }
+    },
+    chaiConfig: {
+      truncateThreshold: 100000,
+    },
   }
 });
